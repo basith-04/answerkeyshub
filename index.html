@@ -465,9 +465,7 @@
                                 id: "maths3-m3",
                                 name: "Module 3",
                                 title: "Module 3",
-                                contributors: [
-                                    { name: 'Unknown', class: 'Unknown' }
-                                ],
+                                contributors: [],
                                 materials: {
                                     answerKey: 'https://drive.com/placeholder',
                                     notes: 'https://drive.com/placeholder',
@@ -479,9 +477,7 @@
                                 id: "maths3-m4",
                                 name: "Module 4",
                                 title: "Module 4",
-                                contributors: [
-                                    { name: 'Unknown', class: 'Unknown' }
-                                ],
+                                contributors: [],
                                 materials: {
                                     answerKey: 'https://drive.com/placeholder',
                                     notes: 'https://drive.com/placeholder',
@@ -529,9 +525,7 @@
                                 id: "toc-m2",
                                 name: "Module 2",
                                 title: "Module 2",
-                                contributors: [
-                                    { name: 'Unknown', class: 'Unknown' }
-                                ],
+                                contributors: [],
                                 materials: {
                                     answerKey: 'https://drive.com/placeholder',
                                     notes: 'https://drive.com/placeholder',
@@ -543,9 +537,7 @@
                                 id: "toc-m3",
                                 name: "Module 3",
                                 title: "Module 3",
-                                contributors: [
-                                    { name: 'Unknown', class: 'Unknown' }
-                                ],
+                                contributors: [],
                                 materials: {
                                     answerKey: 'https://drive.com/placeholder',
                                     notes: 'https://drive.com/placeholder',
@@ -557,9 +549,7 @@
                                 id: "toc-m4",
                                 name: "Module 4",
                                 title: "Module 4",
-                                contributors: [
-                                    { name: 'Unknown', class: 'Unknown' }
-                                ],
+                                contributors: [],
                                 materials: {
                                     answerKey: 'https://drive.com/placeholder',
                                     notes: 'https://drive.com/placeholder',
@@ -849,8 +839,8 @@
             }
 
             let contributorsHtml = '';
-            // Only show contributors if any have a valid name or don't say "Unknown"
-            const validContributors = (module.contributors || []).filter(c => c.name && c.name !== 'Unknown');
+            // Only show contributors if any have a valid name
+            const validContributors = (module.contributors || []).filter(c => c.name);
             if (validContributors.length > 0) {
                 const names = validContributors.map(c => `${c.name} (${c.class})`).join('<br>');
                 contributorsHtml = `
