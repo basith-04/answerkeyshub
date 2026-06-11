@@ -23,17 +23,14 @@ Resources are organized by subject and module to reduce exam-time searching and 
 
 ## What's New
 
-Semester 3 support
-
-Multiple study resources:
-- Answer Keys
-- Notes
-- Mind Maps
-- Audio Resources
-
-Contributor attribution
-
-Semester-based organization for future expansion.
+- Semester 3 support
+- Multiple study resources
+  - Answer Keys
+  - Notes
+  - Mind Maps
+  - Audio Podcasts
+- Contributor attribution
+- Semester-based organization for future expansion
 
 ## Tech Stack
 
