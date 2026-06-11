@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "target": "answerkeys",
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

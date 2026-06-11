@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "innovative-21170"
+  },
+  "targets": {
+    "innovative-21170": {
+      "hosting": {
+        "answerkeys": [
+          "answerkeys"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
