@@ -10,7 +10,27 @@ No organized space existed for VJEC question bank answer keys. Students were was
 
 ## What It Does
 
-A single-page app where students pick a subject → pick a module → get the Drive link. That's it. Simple enough to build in one night, useful enough that people outside my college started using it and reached out to say thanks.
+What started as a simple overnight project to quickly find Drive links has grown into a comprehensive platform. It proved useful enough that students from outside our college began using it and reached out to say thanks.
+
+Today, students can browse semester-wise subjects and access study resources including:
+
+- Answer Keys
+- Notes
+- Mind Maps
+- Audio Podcasts
+
+Resources are organized by subject and module to reduce exam-time searching and make preparation faster.
+
+## What's New
+
+- Semester 3 support
+- Multiple study resources
+  - Answer Keys
+  - Notes
+  - Mind Maps
+  - Audio Podcasts
+- Contributor attribution
+- Semester-based organization for future expansion
 
 ## Tech Stack
 

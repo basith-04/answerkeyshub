@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Answer Key Repository</title>
     <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Custom CSS -->
@@ -18,11 +19,13 @@
         }
 
         /* Card hover effects */
-        .subject-card, .module-card {
+        .subject-card,
+        .module-card {
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .subject-card:hover, .module-card:hover {
+        .subject-card:hover,
+        .module-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
@@ -52,6 +55,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -74,7 +78,7 @@
             height: 100%;
         }
 
-        .module-card .btn {
+        .module-card .resources-container {
             margin-top: auto;
         }
 
@@ -94,8 +98,13 @@
 
         /* Override dropdown style for better visibility */
         .dropdown-menu {
-            max-height: 300px;
+            max-height: 400px;
             overflow-y: auto;
+        }
+
+        .dropdown-header {
+            font-weight: bold;
+            color: var(--bs-info);
         }
 
         /* Fix for header on small screens */
@@ -104,13 +113,41 @@
                 flex-direction: column;
                 text-align: center;
             }
-            
+
             header .dropdown {
                 margin-top: 1rem;
             }
         }
+
+        /* Nav Pills customization */
+        .nav-pills .nav-link {
+            color: var(--bs-light);
+            border-radius: 20px;
+            padding: 0.5rem 1.5rem;
+            margin: 0 0.25rem;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-pills .nav-link.active {
+            background-color: var(--bs-info);
+            color: var(--bs-dark);
+            font-weight: 600;
+        }
+
+        .nav-pills .nav-link:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Contributor styling */
+        .contributors {
+            font-size: 0.85rem;
+            color: var(--bs-secondary);
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <header class="py-3 mb-4 border-bottom">
@@ -120,16 +157,12 @@
                 <h1 class="h4 mb-0">Answer Key Repository</h1>
             </div>
             <div class="dropdown">
-                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="subjectDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="subjectDropdown"
+                    data-bs-toggle="dropdown" aria-expanded="false">
                     Select Subject
                 </button>
                 <ul class="dropdown-menu" id="subjectDropdownMenu" aria-labelledby="subjectDropdown">
-                    <li><a class="dropdown-item" href="#" data-subject="mathematics">Mathematics</a></li>
-                    <li><a class="dropdown-item" href="#" data-subject="c-programming">C Programming</a></li>
-                    <li><a class="dropdown-item" href="#" data-subject="ipr">IPR</a></li>
-                    <li><a class="dropdown-item" href="#" data-subject="chemistry">Chemistry</a></li>
-                    <li><a class="dropdown-item" href="#" data-subject="discrete">Discrete Mathematics</a></li>
-                    <li><a class="dropdown-item" href="#" data-subject="web-foundations">Foundations of Web</a></li>
+                    <!-- Dropdown items dynamically populated -->
                 </ul>
             </div>
         </div>
@@ -144,129 +177,22 @@
                     <h1 class="display-5 fw-bold">Welcome to the Answer Key Repository</h1>
                     <p class="fs-4">Access organized question bank answer keys for various subjects</p>
                     <p class="mb-4">Select a subject to get started or browse our collection below</p>
-                    <button class="btn btn-outline-info btn-lg" type="button" id="browseSubjectsBtn">Browse Subjects</button>
+                    <button class="btn btn-outline-info btn-lg" type="button" id="browseSubjectsBtn">Browse
+                        Subjects</button>
                 </div>
             </div>
         </section>
 
         <!-- Subjects Section -->
         <section id="subjects-section" class="mb-5">
-            <h2 class="mb-4">Available Subjects</h2>
+            <div class="d-flex flex-column align-items-center mb-4">
+                <ul class="nav nav-pills mb-4" id="semesterPills">
+                    <!-- Semester pills dynamically populated -->
+                </ul>
+                <h3 class="mb-3" id="currentSemesterTitle">Subjects</h3>
+            </div>
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="subjects-container">
-
-                
-                <!-- C Programming -->
-                <div class="col">
-                    <div class="card h-100 subject-card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="icon-container me-3">
-                                    <i class="fas fa-code fa-2x text-info"></i>
-                                </div>
-                                <h5 class="card-title mb-0">C Programming</h5>
-                            </div>
-                            <p class="card-text">Access answer keys for C programming question banks</p>
-                            <p class="card-text"><small class="text-body-secondary">4 modules available</small></p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <button class="btn btn-outline-info w-100" onclick="selectSubject('c-programming')">View Modules</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- IPR -->
-                <div class="col">
-                    <div class="card h-100 subject-card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="icon-container me-3">
-                                    <i class="fas fa-copyright fa-2x text-info"></i>
-                                </div>
-                                <h5 class="card-title mb-0">IPR</h5>
-                            </div>
-                            <p class="card-text">Access answer keys for Intellectual Property Rights question banks</p>
-                            <p class="card-text"><small class="text-body-secondary">4 modules available</small></p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <button class="btn btn-outline-info w-100" onclick="selectSubject('ipr')">View Modules</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Chemistry -->
-                <div class="col">
-                    <div class="card h-100 subject-card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="icon-container me-3">
-                                    <i class="fas fa-flask fa-2x text-info"></i>
-                                </div>
-                                <h5 class="card-title mb-0">Chemistry</h5>
-                            </div>
-                            <p class="card-text">Access answer keys for chemistry question banks</p>
-                            <p class="card-text"><small class="text-body-secondary">4 modules available</small></p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <button class="btn btn-outline-info w-100" onclick="selectSubject('chemistry')">View Modules</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Discrete Mathematics -->
-                <div class="col">
-                    <div class="card h-100 subject-card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="icon-container me-3">
-                                    <i class="fas fa-calculator fa-2x text-info"></i>
-                                </div>
-                                <h5 class="card-title mb-0">Discrete Mathematics</h5>
-                            </div>
-                            <p class="card-text">Access answer keys for discrete mathematics question banks</p>
-                            <p class="card-text"><small class="text-body-secondary">4 modules available</small></p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <button class="btn btn-outline-info w-100" onclick="selectSubject('discrete')">View Modules</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Foundations of Web -->
-                <div class="col">
-                    <div class="card h-100 subject-card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="icon-container me-3">
-                                    <i class="fas fa-globe fa-2x text-info"></i>
-                                </div>
-                                <h5 class="card-title mb-0">Foundations of Web</h5>
-                            </div>
-                            <p class="card-text">Access answer keys for web development question banks</p>
-                            <p class="card-text"><small class="text-body-secondary">4 modules available</small></p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <button class="btn btn-outline-info w-100" onclick="selectSubject('web-foundations')">View Modules</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Mathematics -->
-                <div class="col">
-                    <div class="card h-100 subject-card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center mb-3">
-                                <div class="icon-container me-3">
-                                    <i class="fas fa-square-root-variable fa-2x text-info"></i>
-                                </div>
-                                <h5 class="card-title mb-0">Mathematics</h5>
-                            </div>
-                            <p class="card-text">Access answer keys for mathematics question banks</p>
-                            <p class="card-text"><small class="text-body-secondary">4 modules available</small></p>
-                        </div>
-                        <div class="card-footer bg-transparent border-top-0">
-                            <button class="btn btn-outline-info w-100" onclick="selectSubject('mathematics')">View Modules</button>
-                        </div>
-                    </div>
-                </div>
+                <!-- Subjects dynamically populated based on active semester -->
             </div>
         </section>
 
@@ -287,277 +213,611 @@
     <!-- Footer -->
     <footer class="py-4 bg-dark text-center text-white-50 mt-auto">
         <p class="mb-0">
-            © 2025 Answer Key Repository. All answer keys are provided for educational purposes only.  
-            Hosted by Basith
+            © 2025 Answer Key Repository.
+            All answer keys are provided for educational purposes only.
+            Created by <a href="https://www.linkedin.com/in/abdulbasithpv/" target="_blank"
+                class="text-info text-decoration-none">Abdul Basith P V</a> & Co-developed by <a
+                href="https://www.linkedin.com/in/anugrah-james/" target="_blank"
+                class="text-info text-decoration-none">Anugrah James</a>.
         </p>
-        
     </footer>
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+
     <!-- Custom JavaScript -->
     <script>
         // Subject data
-        const subjectsData = [
-       
+        const semestersData = [
             {
-                id: "mathematics",
-                name: "Mathematics",
-                icon: "fa-square-root-variable",
-                description: "Access answer keys for mathematics question banks",
-                modules: [
+                id: "s3",
+                name: "Semester 3",
+                subjects: [
                     {
-                        id: "module1",
-                        name: "Module 1",
-                        description: "Mathematics question bank - first module",
-                        link: "https://drive.google.com/drive/folders/example-module1"
+                        id: "oop",
+                        name: "Object Oriented Programming",
+                        code: "OOP",
+                        icon: "fa-laptop-code",
+                        description: "Access study materials for OOP",
+                        modules: [
+                            {
+                                id: "oop-m1",
+                                name: "Module 1",
+                                title: "Introduction to OOP",
+                                contributors: [{ name: 'Ashin chacko', class: 'S3 CSE A' }],
+                                materials: {
+                                    answerKey: 'https://drive.google.com/file/d/1GBzLYHNVZ2GNpyTRu3Vp1YH62oHSSzFn/view?usp=sharing',
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            },
+                            {
+                                id: "oop-m2",
+                                name: "Module 2",
+                                title: "Inheritance and Polymorphism",
+                                contributors: [{ name: 'Basith', class: 'S3 CSE B' }],
+                                materials: {
+                                    answerKey: 'https://docs.google.com/document/d/16MSHlXABdSHJ6wN2lVlDEllnx6HoXpJ9S5dqhbp0a-Y/edit?usp=sharing',
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            },
+                            {
+                                id: "oop-m3",
+                                name: "Module 3",
+                                title: "Module 3",
+                                contributors: [{ name: 'jiswin', class: 'S3 CSE A' }, { name: 'Basith', class: 'S3 CSE B' }],
+                                materials: {
+                                    answerKey: 'https://docs.google.com/document/d/1eDtYvc_x34lzSb7dF3EgQMDe6KyMOeKmUIAX0a3BhJc/edit?usp=sharing',
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            },
+                            {
+                                id: "oop-m4",
+                                name: "Module 4",
+                                title: "AWT, Swing, JDBC",
+                                contributors: [{ name: 'Ashin chacko', class: 'S3 CSE A' }],
+                                materials: {
+                                    answerKey: 'https://docs.google.com/document/d/1BGBKn5knZM7jVEQXcVpm5YDRWWVMdU9ZR7nFaZNKXlA/edit?usp=sharing',
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            }
+                        ]
                     },
                     {
-                        id: "module2",
-                        name: "Module 2",
-                        description: "Mathematics question bank - second module",
-                        link: "https://drive.google.com/drive/folders/example-module2"
+                        id: "dsa",
+                        name: "Data Structures and Algorithms",
+                        code: "DSA",
+                        icon: "fa-network-wired",
+                        description: "Access study materials for DSA",
+                        modules: [
+                            {
+                                id: "dsa-m1",
+                                name: "Module 1",
+                                title: "Arrays and Linked Lists",
+                                contributors: [
+                                    { name: 'Basith', class: 'S3 CSE B' },
+                                    { name: 'Annliya', class: 'S3 CSE B' },
+                                    { name: 'jiswin', class: 'S3 CSE A' }
+                                ],
+                                materials: {
+                                    answerKey: 'https://drive.google.com/file/d/1PicP60UjXSVvPD60FZnA4xpn55YqC5Uh/view?usp=sharing',
+                                    notes: 'https://drive.google.com/file/d/1ZX0zl5a4fPsy6aaSCIody0iq91KJB_hH/view?usp=sharing',
+                                    mindMap: 'https://drive.google.com/file/d/1tv0-qnQ5yK5kJcai-psGffakzLRlpYYl/view?usp=sharing',
+                                    audio: 'https://drive.google.com/file/d/1HXRKXmPfyWHj6yZMibjCtr1e_yQeq9ek/view?usp=sharing'
+                                }
+                            },
+                            {
+                                id: "dsa-m2",
+                                name: "Module 2",
+                                title: "Stacks and Queues",
+                                contributors: [
+                                    { name: 'Wafa ', class: 'S3 CSE B' },
+                                    { name: 'Basith', class: 'S3 CSE B' }
+                                ],
+                                materials: {
+                                    answerKey: null,
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            },
+                            {
+                                id: "dsa-m3",
+                                name: "Module 3",
+                                title: "Trees and Graphs",
+                                contributors: [{ name: 'Basith', class: 'S3 CSE B' }],
+                                materials: {
+                                    answerKey: null,
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            },
+                            {
+                                id: "dsa-m4",
+                                name: "Module 4",
+                                title: "Sorting and Searching",
+                                contributors: [
+                                    { name: 'Basith', class: 'S3 CSE B' },
+                                    { name: 'Annliya', class: 'S3 CSE B' },
+                                    { name: 'jiswin', class: 'S3 CSE A' }
+                                ],
+                                materials: {
+                                    answerKey: null,
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            }
+                        ]
                     },
                     {
-                        id: "module3",
-                        name: "Module 3",
-                        description: "Mathematics question bank - third module",
-                        link: "https://drive.google.com/drive/folders/example-module3"
+                        id: "eesd",
+                        name: "Engineering Ethics and Sustainable Development",
+                        code: "EESD",
+                        icon: "fa-leaf",
+                        description: "Access study materials for EESD",
+                        modules: [
+                            {
+                                id: "eesd-m1",
+                                name: "Module 1",
+                                title: "Introduction to Engineering Ethics",
+                                contributors: [
+                                    { name: 'Sangeeth', class: 'S3 CSCY' },
+                                    { name: 'Annliya', class: 'S3 CSE -B' }
+                                ],
+                                materials: {
+                                    answerKey: 'https://drive.google.com/drive/folders/1zDuBDNAcbvHVPplJ-f2iNTmf2hqyH57N?usp=sharing',
+                                    notes: 'https://drive.google.com/file/d/1V4PH81zLoQycUP1ngFd9YodwdovAESlJ/view?usp=sharing',
+                                    mindMap: 'https://drive.google.com/file/d/15aBWVLk5vcVS00gH2WT2ldSggqVKheSn/view?usp=sharing',
+                                    audio: null
+                                }
+                            },
+                            {
+                                id: "eesd-m2",
+                                name: "Module 2",
+                                title: "I. INTRODUCTION TO ENVIRONMENTAL ETHICS",
+                                contributors: [
+                                    { name: 'Sangeeth', class: 'S3 CSCY' }
+                                ],
+                                materials: {
+                                    answerKey: 'https://drive.google.com/file/d/1em31Fi3DRbVPkL3Gj-LnEK0Ln2I2emxv/view?usp=sharing',
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            },
+                            {
+                                id: "eesd-m3",
+                                name: "Module 3",
+                                title: "Hydrology and Water Management",
+                                contributors: [
+                                    { name: 'Sangeeth', class: 'S3 CSCY' }
+                                ],
+                                materials: {
+                                    answerKey: null,
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            },
+                            {
+                                id: "eesd-m4",
+                                name: "Module 4",
+                                title: "Environmental Ethics and Engineering",
+                                contributors: [
+                                    { name: 'Sangeeth', class: 'S3 CSCY' }
+                                ],
+                                materials: {
+                                    answerKey: null,
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            }
+                        ]
                     },
                     {
-                        id: "module4",
-                        name: "Module 4",
-                        description: "Mathematics question bank - fourth module",
-                        link: "https://drive.google.com/drive/folders/example-module4"
+                        id: "maths3",
+                        name: "Mathematics",
+                        code: "MATH",
+                        icon: "fa-square-root-variable",
+                        description: "Access study materials for Mathematics",
+                        modules: [
+                            {
+                                id: "maths3-m1",
+                                name: "Module 1",
+                                title: "Module 1",
+                                contributors: [
+                                    { name: 'Milan', class: 'S3 CSE B' },
+                                    { name: 'Sangeeth', class: 'S3 CSCY' },
+                                    { name: 'ashin', class: 'S3 CSE A' }
+                                ],
+                                materials: {
+                                    answerKey: 'https://drive.google.com/file/d/16HAed57BXaXy6q0RC-_GRsmQtbMzpEa6/view?usp=sharing',
+                                    notes: 'https://drive.com/placeholder',
+                                    mindMap: 'https://drive.com/placeholder',
+                                    audio: 'https://drive.com/placeholder'
+                                }
+                            },
+                            {
+                                id: "maths3-m2",
+                                name: "Module 2",
+                                title: "Module 2",
+                                contributors: [
+                                    { name: 'Milan', class: 'S3 CSE B' }
+                                ],
+                                materials: {
+                                    answerKey: 'https://drive.google.com/file/d/1dG026OJWGmuyBgIoFmNAKlNF3XRH9L91/view?usp=sharing',
+                                    notes: null,
+                                    mindMap: null,
+                                    audio: null
+                                }
+                            },
+                            {
+                                id: "maths3-m3",
+                                name: "Module 3",
+                                title: "Module 3",
+                                contributors: [],
+                                materials: {
+                                    answerKey: 'https://drive.com/placeholder',
+                                    notes: 'https://drive.com/placeholder',
+                                    mindMap: 'https://drive.com/placeholder',
+                                    audio: 'https://drive.com/placeholder'
+                                }
+                            },
+                            {
+                                id: "maths3-m4",
+                                name: "Module 4",
+                                title: "Module 4",
+                                contributors: [],
+                                materials: {
+                                    answerKey: 'https://drive.com/placeholder',
+                                    notes: 'https://drive.com/placeholder',
+                                    mindMap: 'https://drive.com/placeholder',
+                                    audio: 'https://drive.com/placeholder'
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        id: "de",
+                        name: "Digital Electronics",
+                        code: "DE",
+                        icon: "fa-microchip",
+                        description: "Access study materials for Digital Electronics",
+                        modules: []
+                    },
+                    {
+                        id: "toc",
+                        name: "Theory of Computation",
+                        code: "TOC",
+                        icon: "fa-brain",
+                        description: "Access study materials for TOC",
+                        modules: [
+                            {
+                                id: "toc-m1",
+                                name: "Module 1",
+                                title: "Module 1",
+                                contributors: [
+                                    { name: 'Joann', class: 'S3 CSE A' },
+                                    { name: 'Niya Jose', class: 'S3 CSE B' },
+                                    { name: 'Juliya', class: 'S3 CSE B' },
+                                    { name: 'Mitu Krishna', class: 'S3 CSE A' },
+                                    { name: 'Navaneeth', class: 'S3 CSE B' },
+                                    { name: 'Vinny Shaju', class: 'S3 CSE A' }
+                                ],
+                                materials: {
+                                    answerKey: 'https://drive.google.com/file/d/1jDW3DjftCYnaQ2TlkuifQvv3qpdV7qiN/view?usp=sharing',
+                                    notes: 'https://drive.com/placeholder',
+                                    mindMap: 'https://drive.com/placeholder',
+                                    audio: 'https://drive.com/placeholder'
+                                }
+                            },
+                            {
+                                id: "toc-m2",
+                                name: "Module 2",
+                                title: "Module 2",
+                                contributors: [],
+                                materials: {
+                                    answerKey: 'https://drive.com/placeholder',
+                                    notes: 'https://drive.com/placeholder',
+                                    mindMap: 'https://drive.com/placeholder',
+                                    audio: 'https://drive.com/placeholder'
+                                }
+                            },
+                            {
+                                id: "toc-m3",
+                                name: "Module 3",
+                                title: "Module 3",
+                                contributors: [],
+                                materials: {
+                                    answerKey: 'https://drive.com/placeholder',
+                                    notes: 'https://drive.com/placeholder',
+                                    mindMap: 'https://drive.com/placeholder',
+                                    audio: 'https://drive.com/placeholder'
+                                }
+                            },
+                            {
+                                id: "toc-m4",
+                                name: "Module 4",
+                                title: "Module 4",
+                                contributors: [],
+                                materials: {
+                                    answerKey: 'https://drive.com/placeholder',
+                                    notes: 'https://drive.com/placeholder',
+                                    mindMap: 'https://drive.com/placeholder',
+                                    audio: 'https://drive.com/placeholder'
+                                }
+                            }
+                        ]
                     }
                 ]
             },
             {
-                id: "c-programming",
-                name: "C Programming",
-                icon: "fa-code",
-                description: "Access answer keys for C programming question banks",
-                modules: [
+                id: "s2",
+                name: "Semester 2",
+                subjects: [
                     {
-                        id: "module1",
-                        name: "Module 1",
-                        description: "C Programming question bank - first module",
-                        link: "https://drive.google.com/file/d/1VH7h7WEssyW3inz7tpJrXVEbXjO841dq/view?usp=sharing"
+                        id: "mathematics",
+                        name: "Mathematics",
+                        code: "MATH",
+                        icon: "fa-square-root-variable",
+                        description: "Access answer keys for mathematics question banks",
+                        modules: [
+                            { id: "module1", name: "Module 1", title: "Mathematics question bank - first module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-module1" } },
+                            { id: "module2", name: "Module 2", title: "Mathematics question bank - second module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-module2" } },
+                            { id: "module3", name: "Module 3", title: "Mathematics question bank - third module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-module3" } },
+                            { id: "module4", name: "Module 4", title: "Mathematics question bank - fourth module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-module4" } }
+                        ]
                     },
                     {
-                        id: "module2",
-                        name: "Module 2",
-                        description: "C Programming question bank - second module",
-                        link: "https://drive.google.com/file/d/1dNPn--vB8xi9-RSvmValmM0Ty5zQefnD/view?usp=sharing"
+                        id: "c-programming",
+                        name: "C Programming",
+                        code: "C",
+                        icon: "fa-code",
+                        description: "Access answer keys for C programming question banks",
+                        modules: [
+                            { id: "module1", name: "Module 1", title: "C Programming question bank - first module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1VH7h7WEssyW3inz7tpJrXVEbXjO841dq/view?usp=sharing" } },
+                            { id: "module2", name: "Module 2", title: "C Programming question bank - second module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1dNPn--vB8xi9-RSvmValmM0Ty5zQefnD/view?usp=sharing" } },
+                            { id: "module3", name: "Module 3", title: "C Programming question bank - third module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-ipr-module4" } },
+                            { id: "module4", name: "Module 4", title: "C Programming question bank - fourth module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-c-module4" } }
+                        ]
                     },
                     {
-                        id: "module3",
-                        name: "Module 3",
-                        description: "C Programming question bank - third module",
-                        link: "https://drive.google.com/drive/folders/example-ipr-module4"
+                        id: "ipr",
+                        name: "IPR",
+                        code: "IPR",
+                        icon: "fa-copyright",
+                        description: "Access answer keys for Intellectual Property Rights question banks",
+                        modules: [
+                            { id: "module1", name: "Module 1", title: "IPR question bank - first module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1Yk0_GDAMsZKAkfNo5icWSuhLYJt1m-Us/view?usp=sharing" } },
+                            { id: "module2", name: "Module 2", title: "IPR question bank - second module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1K-fkKvDod7kj6XpA822oa-wefmAVLtTI/view?usp=sharing" } },
+                            { id: "module3", name: "Module 3", title: "IPR question bank - third module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1NLleyj-Y4WU_wqD6lGSWp7wyKgrqnyfl/view?usp=sharing" } },
+                            { id: "module4", name: "Module 4", title: "IPR question bank - fourth module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-ipr-module4" } }
+                        ]
                     },
                     {
-                        id: "module4",
-                        name: "Module 4",
-                        description: "C Programming question bank - fourth module",
-                        link: "https://drive.google.com/drive/folders/example-c-module4"
-                    }
-                ]
-            },
-            
-            {
-                id: "ipr",
-                name: "IPR",
-                icon: "fa-copyright",
-                description: "Access answer keys for Intellectual Property Rights question banks",
-                modules: [
-                    {
-                        id: "module1",
-                        name: "Module 1",
-                        description: "IPR question bank - first module",
-                        link: "https://drive.google.com/file/d/1Yk0_GDAMsZKAkfNo5icWSuhLYJt1m-Us/view?usp=sharing"
+                        id: "chemistry",
+                        name: "Chemistry",
+                        code: "CHEM",
+                        icon: "fa-flask",
+                        description: "Access answer keys for chemistry question banks",
+                        modules: [
+                            { id: "module1", name: "Module 1", title: "Chemistry question bank - first module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1gWrxPKlxsXP6VfiLyVTf2lOhs9NYsVEu/view?usp=sharing" } },
+                            { id: "module2", name: "Module 2", title: "Chemistry question bank - second module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1ZQi-6XjGz5R1t6OOIal7r_TM6RhIKiWk/view?usp=sharing" } },
+                            { id: "module3", name: "Module 3", title: "Chemistry question bank - third module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-chem-module3" } },
+                            { id: "module4", name: "Module 4", title: "Chemistry question bank - fourth module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-chem-module4" } }
+                        ]
                     },
                     {
-                        id: "module2",
-                        name: "Module 2",
-                        description: "IPR question bank - second module",
-                        link: "https://drive.google.com/file/d/1K-fkKvDod7kj6XpA822oa-wefmAVLtTI/view?usp=sharing"
+                        id: "discrete",
+                        name: "Discrete Mathematics",
+                        code: "DM",
+                        icon: "fa-calculator",
+                        description: "Access answer keys for discrete mathematics question banks",
+                        modules: [
+                            { id: "module1", name: "Module 1", title: "Discrete Mathematics question bank - first module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-discrete-module1" } },
+                            { id: "module2", name: "Module 2", title: "Discrete Mathematics question bank - second module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1cEAbT4-U98vcloqjjmKWAo9JB5jK4s0Y/view?usp=sharing" } },
+                            { id: "module3", name: "Module 3", title: "Discrete Mathematics question bank - third module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1P6FIBb4RjGv2sGVaMeuAxU20LApyPknT/view?usp=sharing" } },
+                            { id: "module4", name: "Module 4", title: "Discrete Mathematics question bank - fourth module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-discrete-module4" } }
+                        ]
                     },
                     {
-                        id: "module3",
-                        name: "Module 3",
-                        description: "IPR question bank - third module",
-                        link: "https://drive.google.com/file/d/1NLleyj-Y4WU_wqD6lGSWp7wyKgrqnyfl/view?usp=sharing"
-                    },
-                    {
-                        id: "module4",
-                        name: "Module 4",
-                        description: "IPR question bank - fourth module",
-                        link: "https://drive.google.com/drive/folders/example-ipr-module4"
-                    }
-                ]
-            },
-            {
-                id: "chemistry",
-                name: "Chemistry",
-                icon: "fa-flask",
-                description: "Access answer keys for chemistry question banks",
-                modules: [
-                    {
-                        id: "module1",
-                        name: "Module 1",
-                        description: "Chemistry question bank - first module",
-                        link: "https://drive.google.com/file/d/1gWrxPKlxsXP6VfiLyVTf2lOhs9NYsVEu/view?usp=sharing"
-                    },
-                    {
-                        id: "module2",
-                        name: "Module 2",
-                        description: "Chemistry question bank - second module",
-                        link: "https://drive.google.com/file/d/1ZQi-6XjGz5R1t6OOIal7r_TM6RhIKiWk/view?usp=sharing"
-                    },
-                    {
-                        id: "module3",
-                        name: "Module 3",
-                        description: "Chemistry question bank - third module",
-                        link: "https://drive.google.com/drive/folders/example-chem-module3"
-                    },
-                    {
-                        id: "module4",
-                        name: "Module 4",
-                        description: "Chemistry question bank - fourth module",
-                        link: "https://drive.google.com/drive/folders/example-chem-module4"
-                    }
-                ]
-            },
-            {
-                id: "discrete",
-                name: "Discrete Mathematics",
-                icon: "fa-calculator",
-                description: "Access answer keys for discrete mathematics question banks",
-                modules: [
-                    {
-                        id: "module1",
-                        name: "Module 1",
-                        description: "Discrete Mathematics question bank - first module",
-                        link: "https://drive.google.com/drive/folders/example-discrete-module1"
-                    },
-                    {
-                        id: "module2",
-                        name: "Module 2",
-                        description: "Discrete Mathematics question bank - second module",
-                        link: "https://drive.google.com/file/d/1cEAbT4-U98vcloqjjmKWAo9JB5jK4s0Y/view?usp=sharing"
-                    },
-                    {
-                        id: "module3",
-                        name: "Module 3",
-                        description: "Discrete Mathematics question bank - third module",
-                        link: "https://drive.google.com/file/d/1P6FIBb4RjGv2sGVaMeuAxU20LApyPknT/view?usp=sharing"
-                    },
-                    {
-                        id: "module4",
-                        name: "Module 4",
-                        description: "Discrete Mathematics question bank - fourth module",
-                        link: "https://drive.google.com/drive/folders/example-discrete-module4"
-                    }
-                ]
-            },
-            {
-                id: "web-foundations",
-                name: "Foundations of Web",
-                icon: "fa-globe",
-                description: "Access answer keys for web development question banks",
-                modules: [
-                    {
-                        id: "module1",
-                        name: "Module 1",
-                        description: "Web Foundations question bank - first module",
-                        link: "https://drive.google.com/file/d/1FOxZ1s2ySFaiB32VnvEOu8VtgXUOCOCp/view?usp=sharing"
-                    },
-                    {
-                        id: "module2",
-                        name: "Module 2",
-                        description: "Web Foundations question bank - second module",
-                        link: "https://drive.google.com/drive/folders/example-web-module2"
-                    },
-                    {
-                        id: "module3",
-                        name: "Module 3",
-                        description: "Web Foundations question bank - third module",
-                        link: "https://drive.google.com/file/d/1QtuBim20x7JIzTt2LVBSAj68oxWhBfoY/view?usp=sharing"
-                    },
-                    {
-                        id: "module4",
-                        name: "Module 4",
-                        description: "Web Foundations question bank - fourth module",
-                        link: "https://drive.google.com/drive/folders/example-web-module4"
+                        id: "web-foundations",
+                        name: "Foundations of Web",
+                        code: "FOW",
+                        icon: "fa-globe",
+                        description: "Access answer keys for web development question banks",
+                        modules: [
+                            { id: "module1", name: "Module 1", title: "Web Foundations question bank - first module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1FOxZ1s2ySFaiB32VnvEOu8VtgXUOCOCp/view?usp=sharing" } },
+                            { id: "module2", name: "Module 2", title: "Web Foundations question bank - second module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-web-module2" } },
+                            { id: "module3", name: "Module 3", title: "Web Foundations question bank - third module", contributors: [], materials: { answerKey: "https://drive.google.com/file/d/1QtuBim20x7JIzTt2LVBSAj68oxWhBfoY/view?usp=sharing" } },
+                            { id: "module4", name: "Module 4", title: "Web Foundations question bank - fourth module", contributors: [], materials: { answerKey: "https://drive.google.com/drive/folders/example-web-module4" } }
+                        ]
                     }
                 ]
             }
         ];
-        
+
+        let currentSemesterId = semestersData[0].id;
+
         // Wait for the DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('DOM fully loaded');
-            
+
+            initSemesters();
+            initDropdown();
+
             // Set up event listeners
             const browseBtn = document.getElementById('browseSubjectsBtn');
             if (browseBtn) {
-                browseBtn.addEventListener('click', function() {
+                browseBtn.addEventListener('click', function () {
                     document.getElementById('subjects-section').scrollIntoView({ behavior: 'smooth' });
                 });
             }
-            
+
             const backBtn = document.getElementById('back-to-subjects');
             if (backBtn) {
-                backBtn.addEventListener('click', function() {
+                backBtn.addEventListener('click', function () {
                     showSubjectsSection();
                 });
             }
-            
-            // Set up dropdown menu click events
-            const dropdownItems = document.querySelectorAll('#subjectDropdownMenu .dropdown-item');
-            dropdownItems.forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const subjectId = this.getAttribute('data-subject');
-                    selectSubject(subjectId);
-                });
-            });
         });
-        
+
+        function initSemesters() {
+            const pillsContainer = document.getElementById('semesterPills');
+            pillsContainer.innerHTML = '';
+
+            semestersData.forEach((semester, index) => {
+                const li = document.createElement('li');
+                li.className = 'nav-item';
+
+                const a = document.createElement('a');
+                a.className = `nav-link ${index === 0 ? 'active' : ''}`;
+                a.textContent = semester.name;
+                a.dataset.id = semester.id;
+
+                a.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-pills .nav-link').forEach(link => link.classList.remove('active'));
+                    this.classList.add('active');
+                    currentSemesterId = this.dataset.id;
+                    displaySubjects(currentSemesterId);
+                });
+
+                li.appendChild(a);
+                pillsContainer.appendChild(li);
+            });
+
+            // Initial display
+            displaySubjects(currentSemesterId);
+        }
+
+        function initDropdown() {
+            const dropdownMenu = document.getElementById('subjectDropdownMenu');
+            dropdownMenu.innerHTML = '';
+
+            semestersData.forEach(semester => {
+                // Add header
+                const headerLi = document.createElement('li');
+                headerLi.innerHTML = `<h6 class="dropdown-header">${semester.name}</h6>`;
+                dropdownMenu.appendChild(headerLi);
+
+                // Add subjects
+                semester.subjects.forEach(subject => {
+                    const li = document.createElement('li');
+                    li.innerHTML = `<a class="dropdown-item" href="#" data-subject="${subject.id}" data-semester="${semester.id}">${subject.code ? subject.code + ' - ' : ''}${subject.name}</a>`;
+
+                    li.querySelector('a').addEventListener('click', function (e) {
+                        e.preventDefault();
+                        const subjectId = this.getAttribute('data-subject');
+                        const semesterId = this.getAttribute('data-semester');
+                        selectSubject(subjectId, semesterId);
+                    });
+
+                    dropdownMenu.appendChild(li);
+                });
+
+                // Add divider if not last
+                if (semester.id !== semestersData[semestersData.length - 1].id) {
+                    const divider = document.createElement('li');
+                    divider.innerHTML = '<hr class="dropdown-divider">';
+                    dropdownMenu.appendChild(divider);
+                }
+            });
+        }
+
+        function displaySubjects(semesterId) {
+            const container = document.getElementById('subjects-container');
+            container.innerHTML = '';
+
+            const semester = semestersData.find(s => s.id === semesterId);
+            if (!semester || !semester.subjects.length) {
+                container.innerHTML = createEmptyState('No subjects available for this semester', 'fa-folder-open');
+                return;
+            }
+
+            document.getElementById('currentSemesterTitle').textContent = `${semester.name} Subjects`;
+
+            semester.subjects.forEach(subject => {
+                const col = document.createElement('div');
+                col.className = 'col';
+
+                col.innerHTML = `
+                    <div class="card h-100 subject-card">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-3">
+                                <div class="icon-container me-3">
+                                    <i class="fas ${subject.icon || 'fa-book'} fa-2x text-info"></i>
+                                </div>
+                                <div>
+                                    ${subject.code ? `<h5 class="card-title mb-0">${subject.code}</h5><small class="text-muted">${subject.name}</small>` : `<h5 class="card-title mb-0">${subject.name}</h5>`}
+                                </div>
+                            </div>
+                            <p class="card-text">${subject.description || ''}</p>
+                            <p class="card-text"><small class="text-body-secondary">${subject.modules.length} modules available</small></p>
+                        </div>
+                        <div class="card-footer bg-transparent border-top-0">
+                            <button class="btn btn-outline-info w-100" onclick="selectSubject('${subject.id}', '${semesterId}')">View Modules</button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(col);
+            });
+        }
+
         // Select a subject to display its modules
-        function selectSubject(subjectId) {
-            const subject = subjectsData.find(s => s.id === subjectId);
-            
+        function selectSubject(subjectId, semesterId) {
+            const semester = semestersData.find(s => s.id === semesterId);
+            if (!semester) return;
+
+            const subject = semester.subjects.find(s => s.id === subjectId);
             if (!subject) {
                 console.error('Subject not found:', subjectId);
                 return;
             }
-            
+
             // Update dropdown button text
-            document.getElementById('subjectDropdown').textContent = subject.name;
-            
+            document.getElementById('subjectDropdown').textContent = `${subject.code ? subject.code + ' - ' : ''}${subject.name}`;
+
             // Update the selected subject title
             document.getElementById('selected-subject-title').textContent = `${subject.name} Modules`;
-            
+
             // Display modules for the selected subject
             displayModules(subject.modules);
-            
+
             // Show modules section and hide subjects section
             showModulesSection();
         }
-        
+
+        function isValidResource(link) {
+            return (
+                link &&
+                typeof link === 'string' &&
+                !link.includes("placeholder") &&
+                link !== "null" &&
+                link.trim() !== ""
+            );
+        }
+
         // Display modules for a selected subject
         function displayModules(modules) {
             const modulesContainer = document.getElementById('modules-container');
             modulesContainer.innerHTML = '';
-            
+
             if (modules.length === 0) {
                 modulesContainer.innerHTML = createEmptyState('No modules available for this subject', 'fa-folder-open');
                 return;
             }
-            
+
             modules.forEach((module, index) => {
                 // Add slight delay for staggered animation effect
                 setTimeout(() => {
@@ -566,50 +826,103 @@
                 }, index * 100);
             });
         }
-        
+
         // Create a module card element
         function createModuleCard(module) {
             const col = document.createElement('div');
             col.className = 'col';
-            
+
+            // Calculate available resources
+            let availableResourcesCount = 0;
+            if (module.materials) {
+                availableResourcesCount = Object.values(module.materials).filter(isValidResource).length;
+            }
+
+            let contributorsHtml = '';
+            // Only show contributors if any have a valid name
+            const validContributors = (module.contributors || []).filter(c => c.name);
+            if (validContributors.length > 0) {
+                const names = validContributors.map(c => `${c.name} (${c.class})`).join('<br>');
+                contributorsHtml = `
+                    <div class="contributors">
+                        <strong>Contributors:</strong><br>
+                        ${names}
+                    </div>
+                `;
+            }
+
+            let resourcesHtml = '';
+            if (availableResourcesCount > 0) {
+                resourcesHtml += '<div class="d-flex flex-column gap-2">';
+
+                if (isValidResource(module.materials.answerKey)) {
+                    resourcesHtml += `<a href="${module.materials.answerKey}" target="_blank" class="btn btn-outline-primary text-start"><i class="fas fa-key me-2"></i> Answer Key</a>`;
+                }
+                if (isValidResource(module.materials.notes)) {
+                    resourcesHtml += `<a href="${module.materials.notes}" target="_blank" class="btn btn-outline-success text-start"><i class="fas fa-file-lines me-2"></i> Notes</a>`;
+                }
+                if (isValidResource(module.materials.mindMap)) {
+                    resourcesHtml += `<a href="${module.materials.mindMap}" target="_blank" class="btn btn-outline-warning text-start"><i class="fas fa-diagram-project me-2"></i> Mind Map</a>`;
+                }
+                if (isValidResource(module.materials.audio)) {
+                    resourcesHtml += `<a href="${module.materials.audio}" target="_blank" class="btn btn-outline-info text-start"><i class="fas fa-headphones me-2"></i> Audio</a>`;
+                }
+
+                resourcesHtml += '</div>';
+            } else {
+                resourcesHtml = `
+                    <div class="text-center mt-3 text-muted">
+                        <i class="fas fa-clock fs-1 mb-2"></i>
+                        <p class="mb-0">Resources Coming Soon</p>
+                    </div>
+                `;
+            }
+
+            let badgeHtml = '';
+            if (availableResourcesCount > 0) {
+                badgeHtml = `<span class="badge bg-secondary mb-3">${availableResourcesCount} Resource${availableResourcesCount > 1 ? 's' : ''} Available</span>`;
+            }
+
             col.innerHTML = `
                 <div class="card h-100 module-card">
                     <div class="card-body">
                         <h5 class="card-title">${module.name}</h5>
-                        <p class="card-text">${module.description}</p>
-                        <a href="${module.link}" target="_blank" class="btn btn-info mt-auto">
-                            <i class="fas fa-external-link-alt me-2"></i>Access Answer Key
-                        </a>
+                        ${module.title ? `<p class="card-text fw-semibold mb-2">${module.title}</p>` : ''}
+                        ${badgeHtml}
+                        ${contributorsHtml}
+                        <div class="resources-container mt-3">
+                            ${resourcesHtml}
+                        </div>
                     </div>
                 </div>
             `;
-            
+
             return col;
         }
-        
+
         // Show the modules section and hide the subjects section
         function showModulesSection() {
             document.getElementById('subjects-section').classList.add('d-none');
             document.getElementById('modules-section').classList.remove('d-none');
             document.getElementById('welcome-section').classList.add('d-none');
-            
+
             // Scroll to top of modules section
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
             });
         }
-        
+
         // Show the subjects section and hide the modules section
         function showSubjectsSection() {
             document.getElementById('subjects-section').classList.remove('d-none');
             document.getElementById('modules-section').classList.add('d-none');
             document.getElementById('welcome-section').classList.remove('d-none');
-            
+
             // Reset dropdown button text
             document.getElementById('subjectDropdown').textContent = 'Select Subject';
         }
-        
+
         // Create an empty state message
         function createEmptyState(message, icon) {
             return `
@@ -623,4 +936,5 @@
         }
     </script>
 </body>
+
 </html>
